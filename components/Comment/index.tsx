@@ -1,5 +1,5 @@
 import React from 'react';
-import {Typography, IconButton, MenuItem, Menu} from '@material-ui/core';
+import { Typography, IconButton, MenuItem, Menu } from '@material-ui/core';
 import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
 
 import styles from './Comment.module.scss';
@@ -13,7 +13,7 @@ interface CommentPostProps {
     createdAt: string;
 }
 
-export const Comment: React.FC<CommentPostProps> = ({user, text, createdAt}) => {
+export const Comment: React.FC<CommentPostProps> = ({ user, text, createdAt }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -27,28 +27,24 @@ export const Comment: React.FC<CommentPostProps> = ({user, text, createdAt}) => 
     return (
         <div className={styles.comment}>
             <div className={styles.userInfo}>
-                <img
-                    src={user.avatarUrl}
-                    alt="Avatar"
-                />
+                <img src={user.avatarUrl} alt='Avatar' />
                 <b>{user.fullname}</b>
                 <span>{createdAt}</span>
             </div>
-            <Typography className={styles.text}>
-                {text}
-            </Typography>
-            <span className={styles.replyBtn}>Ответить</span>
+            <Typography className={styles.text}>{text}</Typography>
+            <span className={styles.replyBtn}>Reply</span>
             <IconButton onClick={handleClick}>
-                <MoreIcon/>
+                <MoreIcon />
             </IconButton>
             <Menu
                 anchorEl={anchorEl}
                 elevation={2}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
-                keepMounted>
-                <MenuItem onClick={handleClose}>Удалить</MenuItem>
-                <MenuItem onClick={handleClose}>Редактировать</MenuItem>
+                keepMounted
+            >
+                <MenuItem onClick={handleClose}>Delete</MenuItem>
+                <MenuItem onClick={handleClose}>Edit</MenuItem>
             </Menu>
         </div>
     );
