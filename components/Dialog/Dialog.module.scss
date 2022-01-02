@@ -1,0 +1,52 @@
+.root {
+  position: relative;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.back {
+  cursor: pointer;
+  color: gray;
+  width: 20px;
+  height: auto;
+  margin-right: 10px;
+
+  &:hover {
+    color: #346eb8;
+  }
+}
+
+.btn {
+  justify-content: flex-start;
+
+  svg {
+    width: 25px;
+    height: auto;
+  }
+
+  span {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.btn:first-of-type {
+  svg {
+    fill: #2374e0;
+  }
+}
+
+.btn:nth-of-type(2) {
+  svg {
+    fill: #e94135;
+  }
+}
+
+

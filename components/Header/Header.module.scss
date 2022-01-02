@@ -62,3 +62,18 @@
     }
   }
 }
+
+.login {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+
+  svg {
+    margin-right: 10px;
+  }
+
+  &:hover {
+    color: #29b241;
+  }
+}
