@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
 
 import { Header } from '../components/Header';
-import { DialogProvider } from '../components/Dialog/DialogProvider';
+import { AuthDialogProvider } from '../components/AuthDialog/AuthDialogProvider';
 import { theme } from '../theme';
 
 import '../styles/globals.scss';
@@ -24,9 +24,9 @@ function MyApp({ Component, pageProps }) {
             </Head>
             <MuiThemeProvider theme={theme}>
                 <CssBaseline />
-                <DialogProvider>
+                <AuthDialogProvider>
                     <Header />
-                </DialogProvider>
+                </AuthDialogProvider>
                 <Component {...pageProps} />
             </MuiThemeProvider>
         </>

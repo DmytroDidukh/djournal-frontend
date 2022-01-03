@@ -10,13 +10,13 @@ import {
     PersonOutline as UserIcon,
 } from '@material-ui/icons';
 
-import { Dialog } from '../Dialog';
-import { DialogContext } from '../Dialog/DialogProvider';
+import { AuthDialog } from '../AuthDialog';
+import { AuthDialogContext } from '../AuthDialog/AuthDialogProvider';
 
 import styles from './Header.module.scss';
 
 export const Header: React.FC = () => {
-    const { setOpen } = React.useContext(DialogContext);
+    const { setOpen } = React.useContext(AuthDialogContext);
 
     return (
         <Paper classes={{ root: styles.root }} elevation={0}>
@@ -67,9 +67,7 @@ export const Header: React.FC = () => {
             {/*        </a>*/}
             {/*    </Link>*/}
             {/*</div>*/}
-            <Dialog />
+            <AuthDialog />
         </Paper>
     );
 };
-
-// TODO: #4

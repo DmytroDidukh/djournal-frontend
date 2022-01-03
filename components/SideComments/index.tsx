@@ -10,7 +10,7 @@ import styles from './SideComments.module.scss';
 export const SideComments = () => {
     const [visible, setVisible] = React.useState(true);
 
-    const toggleVisible = () => {
+    const toggleVisible: () => void = () => {
         setVisible(!visible);
     };
 
