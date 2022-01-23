@@ -20,7 +20,8 @@
     "localStorage": true,
     "MutationObserver": true,
     "fetch": true,
-    "Image": true
+    "Image": true,
+    "Promise": true
   },
   "env": {
     "browser": true,

@@ -6,14 +6,15 @@ const defaultSchema = {
         .string()
         .required('No password provided.')
         .min(8, 'Password is too short - should be 8 chars minimum.')
-        .matches(/[a-zA-Z0-9]/, 'Password can only contain Latin letters and number.'),
+        .max(16, 'Password is too long - should be 16 chars maximum.')
+        .matches(/[a-zA-Z0-9]{8,16}/, 'Password can only contain Latin letters and numbers.'),
 };
 
 export const LoginFormSchema = yup.object().shape({ ...defaultSchema });
 
 export const RegistrationFormSchema = yup.object().shape({
     ...defaultSchema,
-    username: yup
+    fullName: yup
         .string()
         .required('No name or surname provided.')
         .matches(
