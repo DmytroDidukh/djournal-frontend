@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { Paper, Typography } from '@material-ui/core';
 import Image from 'next/image';
 
+// COMPONENTS
 import { PostActions } from '../PostActions';
-
+// STYLES
 import styles from './Post.module.scss';
 
 export const Post: React.FC = () => {

@@ -5,17 +5,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { setCookie } from 'nookies';
 import { useForm, FormProvider } from 'react-hook-form';
 import { AxiosError } from 'axios';
-
 // COMPONENTS
 import { FormField } from '../../FormField';
-
 // CONST
-import { AuthFormEnumType } from '../../../consts/enums';
-import { COOKIE_TOKEN_NAME } from '../../../consts';
-
+import { AuthFormEnumType } from 'consts/enums';
+import { COOKIE_TOKEN_NAME } from 'consts';
 // UTILS & SERVICES
-import { RegistrationFormSchema } from '../../../utils/schemas/validations';
-import UserApi from '../../../api/user-api';
+import { RegistrationFormSchema } from 'utils/schemas/validations';
+import UserApi from 'api/user-api';
 
 interface RegistrationFormProps {
     onLoginClick: (AuthFormEnumType) => void;
@@ -25,7 +22,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick
     const [errorForm, setErrorForm] = useState(null);
 
     const form = useForm({
-        mode: 'onChange',
+        mode: 'onSubmit',
         resolver: yupResolver(RegistrationFormSchema),
     });
 
@@ -76,7 +73,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick
                         color='primary'
                         variant='contained'
                         type='submit'
-                        disabled={!form.formState.isValid || form.formState.isSubmitting}
+                        disabled={form.formState.isSubmitting}
                     >
                         Registration
                     </Button>

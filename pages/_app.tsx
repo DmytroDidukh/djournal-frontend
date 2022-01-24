@@ -1,16 +1,21 @@
 import Head from 'next/head';
 import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
-
-import { Header } from '../components/Header';
-import { AuthDialogProvider } from '../components/AuthDialog/AuthDialogProvider';
-import { theme } from '../theme';
-
-import '../styles/globals.scss';
+import { Provider } from 'react-redux';
 import 'macro-css';
+
+// COMPONENTS
+import { Header } from 'components/Header';
+import { AuthDialogProvider } from 'components/AuthDialog/AuthDialogProvider';
+// UTILS & SERVICES
+import { store } from 'store';
+// OTHER
+import { theme } from '../theme';
+// STYLES
+import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }) {
     return (
-        <>
+        <Provider store={store}>
             <Head>
                 <title>RJournal</title>
                 <link rel='icon' href='/favicon.ico' />
@@ -29,7 +34,7 @@ function MyApp({ Component, pageProps }) {
                 </AuthDialogProvider>
                 <Component {...pageProps} />
             </MuiThemeProvider>
-        </>
+        </Provider>
     );
 }
 

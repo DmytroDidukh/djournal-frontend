@@ -14,18 +14,24 @@ import { AuthFormEnumType } from '../../../consts/enums';
 import { COOKIE_TOKEN_NAME } from '../../../consts';
 
 // UTILS & SERVICES
-import UserApi from '../../../api/user-api';
-import { LoginFormSchema } from '../../../utils/schemas/validations';
+import UserApi from 'api/user-api';
+import { LoginFormSchema } from 'utils/schemas/validations';
+import { selectUser, setUserData } from 'store/slices/user';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 interface LogInFormProps {
     onClick: (AuthFormEnumType) => void;
 }
 
 export const LogInForm: React.FC<LogInFormProps> = ({ onClick }) => {
+    const dispatch = useAppDispatch();
+    const user = useAppSelector(selectUser);
     const [errorForm, setErrorForm] = useState(null);
 
+    console.log('USER: ', user);
+
     const form = useForm({
-        mode: 'onChange',
+        mode: 'onSubmit',
         resolver: yupResolver(LoginFormSchema),
     });
 
@@ -37,6 +43,8 @@ export const LogInForm: React.FC<LogInFormProps> = ({ onClick }) => {
                 maxAge: 30 * 24 * 60 * 60,
                 path: '/',
             });
+
+            dispatch(setUserData(responseData));
 
             setErrorForm(null);
         } catch (err) {
@@ -64,9 +72,9 @@ export const LogInForm: React.FC<LogInFormProps> = ({ onClick }) => {
                         type='submit'
                         color='primary'
                         variant='contained'
-                        disabled={!form.formState.isValid || form.formState.isSubmitting}
+                        disabled={form.formState.isSubmitting}
                     >
-                        Log In
+                        Login
                     </Button>
                     <Button
                         color='primary'

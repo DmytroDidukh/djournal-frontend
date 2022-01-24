@@ -9,6 +9,7 @@ import {
     FormatListBulletedOutlined as ListIcon,
 } from '@material-ui/icons';
 
+// STYLES
 import styles from './LeftMenu.module.scss';
 
 const menu = [

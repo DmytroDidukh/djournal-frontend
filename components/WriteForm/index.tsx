@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Input } from '@material-ui/core';
 import dynamic from 'next/dynamic';
 
+// STYLES
 import styles from './WriteForm.module.scss';
 
 const Editor = dynamic(() => import('../Editor').then((m) => m.Editor), { ssr: false });

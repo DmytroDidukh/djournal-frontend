@@ -2,9 +2,11 @@ import React from 'react';
 import clsx from 'clsx';
 import ArrowRightIcon from '@material-ui/icons/NavigateNextOutlined';
 
+// COMPONENTS
 import { SideCommentItem } from './SideCommentItem';
-import data from '../../data';
-
+// OTHER
+import data from 'data';
+// STYLES
 import styles from './SideComments.module.scss';
 
 export const SideComments = () => {

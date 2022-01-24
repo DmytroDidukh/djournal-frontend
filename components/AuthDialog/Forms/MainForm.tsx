@@ -3,10 +3,11 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import { Button } from '@material-ui/core';
 import { EmailOutlined as EmailIcon, Facebook as FacebookIcon } from '@material-ui/icons';
-
-import GoogleIcon from '../../../icons/google.svg';
-import { AuthFormEnumType } from '../../../consts/enums';
-
+// COMPONENTS
+import GoogleIcon from 'icons/google.svg';
+// CONST
+import { AuthFormEnumType } from 'consts/enums';
+// STYLES
 import styles from '../AuthDialog.module.scss';
 
 interface MainFormProps {

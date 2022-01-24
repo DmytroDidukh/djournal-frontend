@@ -2,6 +2,7 @@ import React from 'react';
 import Input from '@material-ui/core/Input';
 import { Button } from '@material-ui/core';
 
+// STYLES
 import styles from './AddCommentForm.module.scss';
 
 interface AddCommentFormProps {}

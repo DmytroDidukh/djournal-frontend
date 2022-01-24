@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { Paper, Button, IconButton /*Avatar*/ } from '@material-ui/core';
+import { Paper, Button, IconButton /* Avatar*/ } from '@material-ui/core';
 import {
     SearchOutlined as SearchIcon,
-    //SmsOutlined as MessageIcon,
+    // SmsOutlined as MessageIcon,
     Menu as MenuIcon,
-    //ExpandMoreOutlined as ArrowBottom,
-    //NotificationsNoneOutlined as NotificationIcon,
+    // ExpandMoreOutlined as ArrowBottom,
+    // NotificationsNoneOutlined as NotificationIcon,
     PersonOutline as UserIcon,
 } from '@material-ui/icons';
 
@@ -45,9 +45,9 @@ export const Header: React.FC = () => {
             </div>
             <div className={styles.login} onClick={() => setOpen(true)}>
                 <UserIcon />
-                Log In
+                Login
             </div>
-            {/*<div className='d-flex align-center'>*/}
+            {/* <div className='d-flex align-center'>*/}
             {/*    <IconButton*/}
             {/*    >*/}
             {/*        <MessageIcon />*/}
@@ -66,7 +66,7 @@ export const Header: React.FC = () => {
             {/*            <ArrowBottom />*/}
             {/*        </a>*/}
             {/*    </Link>*/}
-            {/*</div>*/}
+            {/* </div>*/}
             <AuthDialog />
         </Paper>
     );

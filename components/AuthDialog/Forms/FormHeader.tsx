@@ -1,9 +1,9 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import { ArrowBackOutlined as ArrowBackIcon } from '@material-ui/icons';
-
+// CONST
 import { AuthFormEnumType } from '../../../consts/enums';
-
+// STYLES
 import styles from '../AuthDialog.module.scss';
 
 interface FormHeaderProps {

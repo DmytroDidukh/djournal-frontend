@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
+// STYLES
 import styles from './SideComments.module.scss';
 
 interface CommentItemProps {

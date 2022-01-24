@@ -1,13 +1,15 @@
 import React from 'react';
 import { Dialog as DialogBase, DialogContent } from '@material-ui/core';
 
-import { AuthFormEnumType } from '../../consts/enums';
-import { AuthDialogContext } from './AuthDialogProvider';
+// COMPONENTS
 import { MainForm } from './Forms/MainForm';
 import { LogInForm } from './Forms/LogInForm';
 import { RegistrationForm } from './Forms/RegistrationForm';
 import { FormHeader } from './Forms/FormHeader';
-
+import { AuthDialogContext } from './AuthDialogProvider';
+// CONST
+import { AuthFormEnumType } from 'consts/enums';
+// STYLES
 import styles from './AuthDialog.module.scss';
 
 export const AuthDialog: React.FC = () => {
