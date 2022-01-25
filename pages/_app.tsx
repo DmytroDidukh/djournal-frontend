@@ -7,15 +7,15 @@ import 'macro-css';
 import { Header } from 'components/Header';
 import { AuthDialogProvider } from 'components/AuthDialog/AuthDialogProvider';
 // UTILS & SERVICES
-import { store } from 'store';
+import { store, reduxWrapper } from 'store';
 // OTHER
 import { theme } from '../theme';
 // STYLES
 import '../styles/globals.scss';
 
-function MyApp({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
     return (
-        <Provider store={store}>
+        <>
             <Head>
                 <title>RJournal</title>
                 <link rel='icon' href='/favicon.ico' />
@@ -27,15 +27,17 @@ function MyApp({ Component, pageProps }) {
                     rel='stylesheet'
                 />
             </Head>
-            <MuiThemeProvider theme={theme}>
-                <CssBaseline />
-                <AuthDialogProvider>
-                    <Header />
-                </AuthDialogProvider>
-                <Component {...pageProps} />
-            </MuiThemeProvider>
-        </Provider>
+            <Provider store={store}>
+                <MuiThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <AuthDialogProvider>
+                        <Header />
+                    </AuthDialogProvider>
+                    <Component {...pageProps} />
+                </MuiThemeProvider>
+            </Provider>
+        </>
     );
-}
+};
 
-export default MyApp;
+export default reduxWrapper.withRedux(App);

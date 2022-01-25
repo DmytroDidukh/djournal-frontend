@@ -1,15 +1,17 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { createWrapper } from 'next-redux-wrapper';
 
-import userReducer from './slices/user';
+import userReducer, { userSlice } from './slices/user';
 
 export const makeStore = () =>
     configureStore({
-        reducer: { user: userReducer },
+        reducer: { [userSlice.name]: userReducer },
     });
 
 export const store = makeStore();
 
-export type AppState = ReturnType<typeof store.getState>;
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppState = ReturnType<AppStore['getState']>;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<
     ReturnType,
@@ -17,3 +19,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     Action<string>
 >;
+
+export const reduxWrapper = createWrapper<AppStore>(makeStore);

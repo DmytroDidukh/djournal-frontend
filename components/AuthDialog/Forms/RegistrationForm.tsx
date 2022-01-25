@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { setCookie } from 'nookies';
 import { useForm, FormProvider } from 'react-hook-form';
 import { AxiosError } from 'axios';
+
 // COMPONENTS
 import { FormField } from '../../FormField';
 // CONST
@@ -12,6 +13,9 @@ import { AuthFormEnumType } from 'consts/enums';
 import { COOKIE_TOKEN_NAME } from 'consts';
 // UTILS & SERVICES
 import { RegistrationFormSchema } from 'utils/schemas/validations';
+import { AuthDialogContext } from '../AuthDialogProvider';
+import { setUserData } from 'store/slices/user';
+import { useAppDispatch } from 'store/hooks';
 import UserApi from 'api/user-api';
 
 interface RegistrationFormProps {
@@ -19,7 +23,9 @@ interface RegistrationFormProps {
 }
 
 export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick }) => {
+    const dispatch = useAppDispatch();
     const [errorForm, setErrorForm] = useState(null);
+    const { setOpen } = useContext(AuthDialogContext);
 
     const form = useForm({
         mode: 'onSubmit',
@@ -34,7 +40,11 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick
                 maxAge: 30 * 24 * 60 * 60,
                 path: '/',
             });
+
+            dispatch(setUserData(responseData));
+
             setErrorForm(null);
+            setOpen(false);
         } catch (err) {
             if (err.response) {
                 const _err: AxiosError = err;

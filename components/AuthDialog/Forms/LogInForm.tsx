@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -8,16 +8,15 @@ import { setCookie } from 'nookies';
 
 // COMPONENTS
 import { FormField } from '../../FormField';
-
 // CONST
 import { AuthFormEnumType } from '../../../consts/enums';
 import { COOKIE_TOKEN_NAME } from '../../../consts';
-
 // UTILS & SERVICES
 import UserApi from 'api/user-api';
 import { LoginFormSchema } from 'utils/schemas/validations';
-import { selectUser, setUserData } from 'store/slices/user';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setUserData } from 'store/slices/user';
+import { useAppDispatch } from 'store/hooks';
+import { AuthDialogContext } from '../AuthDialogProvider';
 
 interface LogInFormProps {
     onClick: (AuthFormEnumType) => void;
@@ -25,10 +24,8 @@ interface LogInFormProps {
 
 export const LogInForm: React.FC<LogInFormProps> = ({ onClick }) => {
     const dispatch = useAppDispatch();
-    const user = useAppSelector(selectUser);
     const [errorForm, setErrorForm] = useState(null);
-
-    console.log('USER: ', user);
+    const { setOpen } = useContext(AuthDialogContext);
 
     const form = useForm({
         mode: 'onSubmit',
@@ -47,6 +44,7 @@ export const LogInForm: React.FC<LogInFormProps> = ({ onClick }) => {
             dispatch(setUserData(responseData));
 
             setErrorForm(null);
+            setOpen(false);
         } catch (err) {
             if (err.response) {
                 const _err: AxiosError = err;

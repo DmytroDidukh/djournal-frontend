@@ -1,5 +1,10 @@
+import { GetServerSideProps } from 'next';
+
+// COMPONENTS
 import { Post } from '../components/Post';
 import { MainLayout } from '../layouts/MainLayout';
+// UTILS & SERVICES
+import { reduxWrapper } from 'store';
 
 export default function Home() {
     return (
@@ -13,3 +18,13 @@ export default function Home() {
         </MainLayout>
     );
 }
+
+export const getServerSideProps: GetServerSideProps = reduxWrapper.getServerSideProps(
+    (store) => async (ctx) => {
+        console.log(store);
+        console.log(ctx);
+        return {
+            props: {},
+        };
+    },
+);
