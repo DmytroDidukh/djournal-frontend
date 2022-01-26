@@ -34,14 +34,14 @@ export const LogInForm: React.FC<LogInFormProps> = ({ onClick }) => {
 
     const onSubmit = async (userData) => {
         try {
-            const responseData = await UserApi.login(userData);
+            const user = await UserApi.login(userData);
 
-            setCookie(null, COOKIE_TOKEN_NAME, responseData.token, {
+            setCookie(null, COOKIE_TOKEN_NAME, user.token, {
                 maxAge: 30 * 24 * 60 * 60,
                 path: '/',
             });
 
-            dispatch(setUserData(responseData));
+            dispatch(setUserData(user));
 
             setErrorForm(null);
             setOpen(false);

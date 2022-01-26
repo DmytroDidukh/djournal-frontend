@@ -14,10 +14,14 @@ class UserApi {
         return response.data;
     }
 
-    async singIn() {
-        const data = await api.get('/auth/signin');
+    async singIn(token: string) {
+        const response = await api.get('/auth/signin', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
 
-        return data;
+        return response.data;
     }
 }
 

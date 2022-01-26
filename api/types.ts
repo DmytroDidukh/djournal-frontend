@@ -14,5 +14,5 @@ export type UserResponseDtoType = {
     email: string;
     fullName: string;
     createdAt: string;
-    token: string;
+    token?: string;
 };

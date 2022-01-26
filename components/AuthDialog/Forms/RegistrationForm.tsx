@@ -34,14 +34,14 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick
 
     const onSubmit = async (userData) => {
         try {
-            const responseData = await UserApi.register(userData);
+            const user = await UserApi.register(userData);
 
-            setCookie(null, COOKIE_TOKEN_NAME, responseData.token, {
+            setCookie(null, COOKIE_TOKEN_NAME, user.token, {
                 maxAge: 30 * 24 * 60 * 60,
                 path: '/',
             });
 
-            dispatch(setUserData(responseData));
+            dispatch(setUserData(user));
 
             setErrorForm(null);
             setOpen(false);

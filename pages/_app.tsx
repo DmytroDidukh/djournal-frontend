@@ -1,13 +1,12 @@
 import Head from 'next/head';
 import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
-import { Provider } from 'react-redux';
 import 'macro-css';
 
 // COMPONENTS
 import { Header } from 'components/Header';
 import { AuthDialogProvider } from 'components/AuthDialog/AuthDialogProvider';
 // UTILS & SERVICES
-import { store, reduxWrapper } from 'store';
+import { reduxWrapper } from 'store';
 // OTHER
 import { theme } from '../theme';
 // STYLES
@@ -27,15 +26,13 @@ const App = ({ Component, pageProps }) => {
                     rel='stylesheet'
                 />
             </Head>
-            <Provider store={store}>
-                <MuiThemeProvider theme={theme}>
-                    <CssBaseline />
-                    <AuthDialogProvider>
-                        <Header />
-                    </AuthDialogProvider>
-                    <Component {...pageProps} />
-                </MuiThemeProvider>
-            </Provider>
+            <MuiThemeProvider theme={theme}>
+                <CssBaseline />
+                <AuthDialogProvider>
+                    <Header />
+                </AuthDialogProvider>
+                <Component {...pageProps} />
+            </MuiThemeProvider>
         </>
     );
 };
