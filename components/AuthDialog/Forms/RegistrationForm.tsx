@@ -14,8 +14,7 @@ import { COOKIE_TOKEN_NAME } from 'consts';
 // UTILS & SERVICES
 import { RegistrationFormSchema } from 'utils/schemas/validations';
 import { AuthDialogContext } from '../AuthDialogProvider';
-import { setUserData } from 'store/slices/user';
-import { useAppDispatch } from 'store/hooks';
+import { useActions } from 'store/hooks';
 import UserApi from 'api/user-api';
 
 interface RegistrationFormProps {
@@ -23,7 +22,7 @@ interface RegistrationFormProps {
 }
 
 export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick }) => {
-    const dispatch = useAppDispatch();
+    const { setUserData } = useActions();
     const [errorForm, setErrorForm] = useState(null);
     const { setOpen } = useContext(AuthDialogContext);
 
@@ -41,7 +40,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick
                 path: '/',
             });
 
-            dispatch(setUserData(user));
+            setUserData(user);
 
             setErrorForm(null);
             setOpen(false);

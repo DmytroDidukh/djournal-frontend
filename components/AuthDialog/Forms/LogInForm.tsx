@@ -14,8 +14,7 @@ import { COOKIE_TOKEN_NAME } from '../../../consts';
 // UTILS & SERVICES
 import UserApi from 'api/user-api';
 import { LoginFormSchema } from 'utils/schemas/validations';
-import { setUserData } from 'store/slices/user';
-import { useAppDispatch } from 'store/hooks';
+import { useActions } from 'store/hooks';
 import { AuthDialogContext } from '../AuthDialogProvider';
 
 interface LogInFormProps {
@@ -23,7 +22,7 @@ interface LogInFormProps {
 }
 
 export const LogInForm: React.FC<LogInFormProps> = ({ onClick }) => {
-    const dispatch = useAppDispatch();
+    const { setUserData } = useActions();
     const [errorForm, setErrorForm] = useState(null);
     const { setOpen } = useContext(AuthDialogContext);
 
@@ -41,7 +40,7 @@ export const LogInForm: React.FC<LogInFormProps> = ({ onClick }) => {
                 path: '/',
             });
 
-            dispatch(setUserData(user));
+            setUserData(user);
 
             setErrorForm(null);
             setOpen(false);

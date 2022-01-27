@@ -33,9 +33,11 @@ export const userSlice = createSlice({
     },
 });
 
+// SEPARATE ACTIONS
 export const { setUserData } = userSlice.actions;
 
 // SELECTORS
 export const selectUser = (state: AppState) => state.user.data;
 
-export default userSlice.reducer;
+export const userReducer = userSlice.reducer;
+export const userActions = userSlice.actions;
