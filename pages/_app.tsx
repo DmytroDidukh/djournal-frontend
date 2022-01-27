@@ -1,18 +1,24 @@
+import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { parseCookies } from 'nookies';
 import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
 import 'macro-css';
 
 // COMPONENTS
 import { Header } from 'components/Header';
 import { AuthDialogProvider } from 'components/AuthDialog/AuthDialogProvider';
+// CONST
+import { COOKIE_TOKEN_NAME } from 'consts';
 // UTILS & SERVICES
 import { reduxWrapper } from 'store';
+import { setUserData } from 'store/slices/user';
+import UserApi from 'api/user-api';
 // OTHER
 import { theme } from '../theme';
 // STYLES
-import '../styles/globals.scss';
+import 'styles/globals.scss';
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps }: AppProps) => {
     return (
         <>
             <Head>
@@ -36,5 +42,24 @@ const App = ({ Component, pageProps }) => {
         </>
     );
 };
+
+App.getInitialProps = reduxWrapper.getInitialAppProps((store) => async ({ ctx, Component }) => {
+    try {
+        const cookies = parseCookies(ctx);
+        const user = await UserApi.singIn(cookies[COOKIE_TOKEN_NAME]);
+
+        store.dispatch(setUserData(user));
+    } catch (err) {
+        console.error(err);
+    }
+
+    return {
+        pageProps: {
+            ...(Component.getInitialProps
+                ? await Component.getInitialProps({ ...ctx, store })
+                : {}),
+        },
+    };
+});
 
 export default reduxWrapper.withRedux(App);

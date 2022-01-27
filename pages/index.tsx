@@ -1,15 +1,10 @@
-import { GetServerSideProps, NextPage } from 'next';
-import { parseCookies } from 'nookies';
+import { NextPage } from 'next';
 
 // COMPONENTS
 import { Post } from '../components/Post';
 import { MainLayout } from '../layouts/MainLayout';
-// CONST
-import { COOKIE_TOKEN_NAME } from 'consts';
 // UTILS & SERVICES
-import { AppState, reduxWrapper } from 'store';
-import { setUserData } from 'store/slices/user';
-import UserApi from 'api/user-api';
+import { AppState } from 'store';
 
 const Home: NextPage<AppState> = () => {
     return (
@@ -23,22 +18,5 @@ const Home: NextPage<AppState> = () => {
         </MainLayout>
     );
 };
-
-export const getServerSideProps: GetServerSideProps = reduxWrapper.getServerSideProps(
-    (store) => async (ctx) => {
-        try {
-            const cookies = parseCookies(ctx);
-            const user = await UserApi.singIn(cookies[COOKIE_TOKEN_NAME]);
-
-            store.dispatch(setUserData(user));
-
-            return {
-                props: {},
-            };
-        } catch (err) {
-            return { props: {} };
-        }
-    },
-);
 
 export default Home;
