@@ -12,7 +12,7 @@ import { FormField } from '../../FormField';
 import { AuthFormEnumType } from '../../../consts/enums';
 import { COOKIE_TOKEN_NAME } from '../../../consts';
 // UTILS & SERVICES
-import UserApi from 'api/user-api';
+import { Api } from 'api';
 import { LoginFormSchema } from 'utils/schemas/validations';
 import { useActions } from 'store/hooks';
 import { AuthDialogContext } from '../AuthDialogProvider';
@@ -33,7 +33,7 @@ export const LogInForm: React.FC<LogInFormProps> = ({ onClick }) => {
 
     const onSubmit = async (userData) => {
         try {
-            const user = await UserApi.login(userData);
+            const user = await Api().user.login(userData);
 
             setCookie(null, COOKIE_TOKEN_NAME, user.token, {
                 maxAge: 30 * 24 * 60 * 60,

@@ -1,18 +1,15 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { parseCookies } from 'nookies';
 import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
 import 'macro-css';
 
 // COMPONENTS
 import { Header } from 'components/Header';
 import { AuthDialogProvider } from 'components/AuthDialog/AuthDialogProvider';
-// CONST
-import { COOKIE_TOKEN_NAME } from 'consts';
 // UTILS & SERVICES
 import { reduxWrapper } from 'store';
 import { setUserData } from 'store/slices/user';
-import UserApi from 'api/user-api';
+import { Api } from 'api';
 // OTHER
 import { theme } from '../theme';
 // STYLES
@@ -45,8 +42,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
 App.getInitialProps = reduxWrapper.getInitialAppProps((store) => async ({ ctx, Component }) => {
     try {
-        const cookies = parseCookies(ctx);
-        const user = await UserApi.singIn(cookies[COOKIE_TOKEN_NAME]);
+        const user = await Api(ctx).user.singIn();
 
         store.dispatch(setUserData(user));
     } catch (err) {

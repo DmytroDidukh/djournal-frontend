@@ -1,11 +1,19 @@
-import React from 'react';
-import EditorJS from '@editorjs/editorjs';
+import React, { useEffect } from 'react';
+import EditorJS, { OutputBlockData } from '@editorjs/editorjs';
 
-export const Editor: React.FC = () => {
-    React.useEffect(() => {
+interface EditorProps {
+    onChange: (blocks: OutputBlockData[]) => void;
+}
+
+export const Editor: React.FC<EditorProps> = ({ onChange }) => {
+    useEffect(() => {
         const editor: EditorJS = new EditorJS({
             holder: 'editor',
             placeholder: 'Enter the text of your article',
+            async onChange() {
+                const { blocks } = await editor.save();
+                onChange(blocks);
+            },
         });
 
         return () => {
@@ -15,6 +23,8 @@ export const Editor: React.FC = () => {
                 })
                 .catch((e) => console.error('ERROR editor cleanup', e));
         };
+
+        // eslint-disable-next-line
     }, []);
 
     return <div id='editor' />;

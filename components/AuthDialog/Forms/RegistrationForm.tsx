@@ -15,7 +15,7 @@ import { COOKIE_TOKEN_NAME } from 'consts';
 import { RegistrationFormSchema } from 'utils/schemas/validations';
 import { AuthDialogContext } from '../AuthDialogProvider';
 import { useActions } from 'store/hooks';
-import UserApi from 'api/user-api';
+import { Api } from 'api';
 
 interface RegistrationFormProps {
     onLoginClick: (AuthFormEnumType) => void;
@@ -33,7 +33,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onLoginClick
 
     const onSubmit = async (userData) => {
         try {
-            const user = await UserApi.register(userData);
+            const user = await Api().user.register(userData);
 
             setCookie(null, COOKIE_TOKEN_NAME, user.token, {
                 maxAge: 30 * 24 * 60 * 60,
