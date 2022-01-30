@@ -1,3 +1,8 @@
+import { OutputBlockData } from '@editorjs/editorjs';
+
+/**
+ * User Types
+ * */
 export type LoginUserDtoType = {
     email: string;
     password: string;
@@ -9,10 +14,29 @@ export type RegisterUserDtoType = {
     fullName: string;
 };
 
-export type UserResponseDtoType = {
+export type UserDtoType = {
     id: number;
     email: string;
     fullName: string;
     createdAt: string;
     token?: string;
+};
+
+/**
+ * Post Types
+ * */
+export type CreatePostDtoType = {
+    title: string;
+    body: OutputBlockData[];
+    tags?: string[];
+};
+
+export type PostDtoType = {
+    id: number;
+    title: string;
+    body: OutputBlockData[];
+    views: number;
+    tags?: string[];
+    createdAt: Date;
+    updatedAt: Date;
 };

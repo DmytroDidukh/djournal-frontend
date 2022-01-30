@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Input } from '@material-ui/core';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import clsx from 'clsx';
 
+// UTILS & SERVICES
+import { Api } from 'api';
 // STYLES
 import styles from './WriteForm.module.scss';
 
@@ -15,7 +19,23 @@ export const WriteForm: React.FC<WriteFormProps> = () => {
     const [title, setTitle] = useState('');
     const [blocks, setBlocks] = useState(null);
 
-    console.log(blocks);
+    const router = useRouter();
+
+    const publishHandler = async () => {
+        try {
+            const post = {
+                title,
+                body: [...blocks],
+            };
+
+            const resp = await Api().post.create(post);
+
+            console.log(resp);
+            await router.push('/');
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <div>
@@ -25,10 +45,10 @@ export const WriteForm: React.FC<WriteFormProps> = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
-            <div className={styles.editor}>
+            <div className={clsx(styles.editor, 'p-20')}>
                 <Editor onChange={setBlocks} />
             </div>
-            <Button variant='contained' color='primary'>
+            <Button variant='contained' color='primary' className='mt-20' onClick={publishHandler}>
                 Publish
             </Button>
         </div>

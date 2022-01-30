@@ -1,10 +1,11 @@
-import { UserResponseDtoType, LoginUserDtoType, RegisterUserDtoType } from './types';
 import { AxiosInstance } from 'axios';
 
+import { UserDtoType, LoginUserDtoType, RegisterUserDtoType } from './types';
+
 export interface UserApiInterface {
-    register(dto: RegisterUserDtoType): Promise<UserResponseDtoType>;
-    login(dto: LoginUserDtoType): Promise<UserResponseDtoType>;
-    singIn(): Promise<UserResponseDtoType>;
+    register(dto: RegisterUserDtoType): Promise<UserDtoType>;
+    login(dto: LoginUserDtoType): Promise<UserDtoType>;
+    singIn(): Promise<UserDtoType>;
 }
 
 class UserApi implements UserApiInterface {

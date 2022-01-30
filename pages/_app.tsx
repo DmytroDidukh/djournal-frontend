@@ -46,6 +46,14 @@ App.getInitialProps = reduxWrapper.getInitialAppProps((store) => async ({ ctx, C
 
         store.dispatch(setUserData(user));
     } catch (err) {
+        if (ctx.asPath === '/write') {
+            ctx.res.writeHead(302, {
+                Location: '/',
+            });
+
+            ctx.res.end();
+        }
+
         console.error(err);
     }
 

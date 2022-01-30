@@ -6,9 +6,11 @@ import Cookies, { parseCookies } from 'nookies';
 import { COOKIE_TOKEN_NAME } from 'consts';
 // UTILS & SERVICES
 import UserApi, { UserApiInterface } from './user';
+import PostApi, { PostApiInterface } from './post';
 
 export type ApiReturnType = {
     user: UserApiInterface;
+    post: PostApiInterface;
 };
 
 export const Api = (ctx?: NextPageContext | GetServerSidePropsContext): ApiReturnType => {
@@ -24,5 +26,6 @@ export const Api = (ctx?: NextPageContext | GetServerSidePropsContext): ApiRetur
 
     return {
         user: new UserApi(instance),
+        post: new PostApi(instance),
     };
 };
