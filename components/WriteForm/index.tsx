@@ -22,10 +22,15 @@ export const WriteForm: React.FC<WriteFormProps> = () => {
     const router = useRouter();
 
     const publishHandler = async () => {
+        if (!title || !blocks) {
+            return;
+        }
+
         try {
             const post = {
                 title,
-                body: [...blocks],
+                description: blocks[0].data.text,
+                body: [...blocks.slice(1)],
             };
 
             const resp = await Api().post.create(post);

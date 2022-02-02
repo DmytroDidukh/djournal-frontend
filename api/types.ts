@@ -27,14 +27,16 @@ export type UserDtoType = {
  * */
 export type CreatePostDtoType = {
     title: string;
-    body: OutputBlockData[];
+    description: string;
+    body?: OutputBlockData[];
     tags?: string[];
 };
 
 export type PostDtoType = {
     id: number;
     title: string;
-    body: OutputBlockData[];
+    description: string;
+    body?: OutputBlockData[];
     views: number;
     tags?: string[];
     createdAt: Date;
