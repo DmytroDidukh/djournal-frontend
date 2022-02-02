@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
+// UTILS & SERVICES
 import type { AppState } from '../index';
-import { UserResponseDtoType } from 'api/types';
+import { UserDtoType } from 'api/types';
 
 export interface UserState {
-    data: UserResponseDtoType | null;
+    data: UserDtoType | null;
 }
 
 const initialState: UserState = {
@@ -18,7 +19,7 @@ export const userSlice = createSlice({
     initialState,
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
-        setUserData: (state, action: PayloadAction<UserResponseDtoType>) => {
+        setUserData: (state, action: PayloadAction<UserDtoType>) => {
             state.data = action.payload;
         },
     },

@@ -1,10 +1,11 @@
 import React, { CSSProperties } from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Typography } from '@material-ui/core';
 import {
     ModeCommentOutlined as CommentsIcon,
     RepeatOutlined as RepostIcon,
     BookmarkBorderOutlined as FavoriteIcon,
     ShareOutlined as ShareIcon,
+    Visibility as VisibilityIcon,
 } from '@material-ui/icons';
 
 const styles: CSSProperties = {
@@ -17,7 +18,11 @@ const styles: CSSProperties = {
     margin: '0',
 };
 
-export const PostActions: React.FC = () => {
+interface PostActionsProps {
+    views: number;
+}
+
+export const PostActions: React.FC<PostActionsProps> = ({ views }) => {
     return (
         <ul style={styles}>
             <li>
@@ -38,6 +43,19 @@ export const PostActions: React.FC = () => {
             <li>
                 <IconButton>
                     <ShareIcon />
+                </IconButton>
+            </li>
+            <li>
+                <IconButton disabled>
+                    <VisibilityIcon />
+                    <Typography
+                        variant='subtitle2'
+                        display='inline'
+                        color='textSecondary'
+                        className='ml-5'
+                    >
+                        {views}
+                    </Typography>
                 </IconButton>
             </li>
         </ul>

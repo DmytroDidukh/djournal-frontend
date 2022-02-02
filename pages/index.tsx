@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 
 // COMPONENTS
 import { Post } from '../components/Post';
@@ -24,7 +24,7 @@ const Home: NextPage<HomeProps & AppState> = ({ posts }) => {
     );
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
     try {
         const posts = await Api().post.getAll();
 

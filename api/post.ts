@@ -22,7 +22,7 @@ class PostApi implements PostApiInterface {
     }
 
     async getOneById(id) {
-        const response = await this.apiInstance.get('/post/:id', id);
+        const response = await this.apiInstance.get(`/post/${id}`);
 
         return response.data;
     }
