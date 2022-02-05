@@ -24,7 +24,7 @@ export const getServerSideProps = reduxWrapper.getServerSideProps((store) => asy
     try {
         const id = Number(ctx.params.id);
         const user = store.getState().user.data;
-        const post = await Api().post.getOneById(id);
+        const post = await Api().post.getOneById(id, true);
 
         if (post.author.id !== user.id) {
             throw new Error();
