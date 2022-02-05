@@ -6,18 +6,19 @@ import clsx from 'clsx';
 
 // UTILS & SERVICES
 import { Api } from 'api';
+import { PostDtoType } from 'api/types';
 // STYLES
 import styles from './WriteForm.module.scss';
 
 const Editor = dynamic(() => import('../Editor').then((m) => m.Editor), { ssr: false });
 
 interface WriteFormProps {
-    data?: any;
+    data?: PostDtoType;
 }
 
-export const WriteForm: React.FC<WriteFormProps> = () => {
-    const [title, setTitle] = useState('');
-    const [blocks, setBlocks] = useState(null);
+export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
+    const [title, setTitle] = useState(data ? data.title : '');
+    const [blocks, setBlocks] = useState(data ? data.body : []);
 
     const router = useRouter();
 
@@ -30,7 +31,7 @@ export const WriteForm: React.FC<WriteFormProps> = () => {
             const post = {
                 title,
                 description: blocks[0].data.text,
-                body: [...blocks.slice(1)],
+                body: blocks,
             };
 
             const resp = await Api().post.create(post);
@@ -51,7 +52,7 @@ export const WriteForm: React.FC<WriteFormProps> = () => {
                 onChange={(e) => setTitle(e.target.value)}
             />
             <div className={clsx(styles.editor, 'p-20')}>
-                <Editor onChange={setBlocks} />
+                <Editor initialBlocks={blocks} onChange={setBlocks} />
             </div>
             <Button variant='contained' color='primary' className='mt-20' onClick={publishHandler}>
                 Publish

@@ -13,10 +13,9 @@ interface WritePageProps {
 }
 
 const WritePage: NextPage<WritePageProps> = ({ post }) => {
-    console.log('POST: ', post);
     return (
         <MainLayout className='main-layout-white' hideComments hideMenu>
-            <WriteForm />
+            <WriteForm data={post} />
         </MainLayout>
     );
 };
