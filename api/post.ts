@@ -4,7 +4,8 @@ import { CreatePostDtoType, PostDtoType } from './types';
 
 export interface PostApiInterface {
     getAll(): Promise<PostDtoType[]>;
-    getOneById(id: number, editing: boolean): Promise<PostDtoType>;
+    getOneById(id: number): Promise<PostDtoType>;
+    getOneBySlug(slug: string): Promise<PostDtoType>;
     create(dto: CreatePostDtoType): Promise<PostDtoType>;
     update(id: number, dto: CreatePostDtoType): Promise<PostDtoType>;
 }
@@ -22,8 +23,14 @@ class PostApi implements PostApiInterface {
         return response.data;
     }
 
-    async getOneById(id, editing) {
-        const response = await this.apiInstance.get(`/post/${id}?editing=${editing}`);
+    async getOneById(id) {
+        const response = await this.apiInstance.get(`/post/${id}`);
+
+        return response.data;
+    }
+
+    async getOneBySlug(slug) {
+        const response = await this.apiInstance.get(`/post/slug/${slug}`);
 
         return response.data;
     }

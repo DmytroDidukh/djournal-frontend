@@ -8,7 +8,10 @@ export const theme = createTheme({
     },
     palette: {
         primary: {
-            main: '#4683d9',
+            main: '#a6dcf9',
+        },
+        secondary: {
+            main: '#6c6c6c',
         },
     },
     overrides: {

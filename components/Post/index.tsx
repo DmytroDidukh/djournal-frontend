@@ -30,7 +30,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
                     </Link>
                 </Typography>
                 <Typography variant='h5' display='inline' className={styles.title}>
-                    <Link href={`/news/${post.id}`}>
+                    <Link href={`/post/${post.slug}`}>
                         <a>{post.title}</a>
                     </Link>
                 </Typography>

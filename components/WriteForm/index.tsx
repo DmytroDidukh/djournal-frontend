@@ -19,10 +19,12 @@ interface WriteFormProps {
 export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
     const [title, setTitle] = useState(data?.title || '');
     const [blocks, setBlocks] = useState(data?.body || []);
+    const [isLoading, setIsLoading] = useState(false);
 
     const router = useRouter();
 
     const publishHandler = async () => {
+        setIsLoading(true);
         try {
             const isEditing = !!data;
             const post = {
@@ -40,6 +42,8 @@ export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
             await router.push('/');
         } catch (err) {
             console.log(err);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -59,7 +63,7 @@ export const WriteForm: React.FC<WriteFormProps> = ({ data }) => {
                 color='primary'
                 className='mt-20'
                 onClick={publishHandler}
-                disabled={!title || !blocks.length}
+                disabled={isLoading || !title || !blocks.length}
             >
                 {data ? 'Save' : 'Publish'}
             </Button>

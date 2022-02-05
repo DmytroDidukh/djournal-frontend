@@ -35,6 +35,7 @@ export type CreatePostDtoType = {
 export type PostDtoType = {
     id: number;
     title: string;
+    slug: string;
     author: UserDtoType;
     description: string;
     body?: OutputBlockData[];
