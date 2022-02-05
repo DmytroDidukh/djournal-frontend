@@ -1,10 +1,12 @@
+@import "styles/variables";
+
 .root {
   position: fixed;
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  background-color: #e2ffe7 !important;
+  background-color: $primary-color !important;
   padding: 0 35px 0 10px;
   height: 60px;
   margin-bottom: 14px;
@@ -60,5 +62,20 @@
       border-color: darken(#fff4e2, 15%);
       box-shadow: 0 0 0 3px rgb(229 160 64 / 12%);
     }
+  }
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+
+  svg {
+    margin-right: 10px;
+  }
+
+  &:hover {
+    color: #29b241;
   }
 }

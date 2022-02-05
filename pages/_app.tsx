@@ -1,13 +1,21 @@
+import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MuiThemeProvider, CssBaseline } from '@material-ui/core';
-
-import { Header } from '../components/Header';
-import { theme } from '../theme';
-
-import '../styles/globals.scss';
 import 'macro-css';
 
-function MyApp({ Component, pageProps }) {
+// COMPONENTS
+import { Header } from 'components/Header';
+import { AuthDialogProvider } from 'components/AuthDialog/AuthDialogProvider';
+// UTILS & SERVICES
+import { reduxWrapper } from 'store';
+import { setUserData } from 'store/slices/user';
+import { Api } from 'api';
+// OTHER
+import { theme } from '../theme';
+// STYLES
+import 'styles/globals.scss';
+
+const App = ({ Component, pageProps }: AppProps) => {
     return (
         <>
             <Head>
@@ -23,11 +31,39 @@ function MyApp({ Component, pageProps }) {
             </Head>
             <MuiThemeProvider theme={theme}>
                 <CssBaseline />
-                <Header />
+                <AuthDialogProvider>
+                    <Header />
+                </AuthDialogProvider>
                 <Component {...pageProps} />
             </MuiThemeProvider>
         </>
     );
-}
+};
 
-export default MyApp;
+App.getInitialProps = reduxWrapper.getInitialAppProps((store) => async ({ ctx, Component }) => {
+    try {
+        const user = await Api(ctx).user.singIn();
+
+        store.dispatch(setUserData(user));
+    } catch (err) {
+        if (ctx.asPath === '/write') {
+            ctx.res.writeHead(302, {
+                Location: '/',
+            });
+
+            ctx.res.end();
+        }
+
+        console.error(err);
+    }
+
+    return {
+        pageProps: {
+            ...(Component.getInitialProps
+                ? await Component.getInitialProps({ ...ctx, store })
+                : {}),
+        },
+    };
+});
+
+export default reduxWrapper.withRedux(App);

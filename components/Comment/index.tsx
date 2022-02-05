@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, IconButton, MenuItem, Menu } from '@material-ui/core';
 import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
 
+// STYLES
 import styles from './Comment.module.scss';
 
 interface CommentPostProps {

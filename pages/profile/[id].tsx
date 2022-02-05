@@ -5,10 +5,16 @@ import {
     TextsmsOutlined as MessageIcon,
 } from '@material-ui/icons';
 
-import { Post } from '../../components/Post';
-import { MainLayout } from '../../layouts/MainLayout';
+// COMPONENTS
+import { Post } from 'components/Post';
+import { MainLayout } from 'layouts/MainLayout';
+// UTILS & SERVICES
+import { useAppSelector } from 'store/hooks';
+import { selectUser } from 'store/slices/user';
 
-export default function Profile() {
+const Profile = () => {
+    const user = useAppSelector(selectUser);
+
     return (
         <MainLayout contentFullWidth hideComments>
             <Paper className='pl-20 pr-20 pt-20 mb-30' elevation={0}>
@@ -20,7 +26,7 @@ export default function Profile() {
                             src='https://leonardo.osnova.io/5ffeac9a-a0e5-5be6-98af-659bfaabd2a6/-/scale_crop/108x108/-/format/webp/'
                         />
                         <Typography style={{ fontWeight: 'bold' }} className='mt-10' variant='h4'>
-                            Amon Bower
+                            {user ? user.fullName : 'Bob'}
                         </Typography>
                     </div>
                     <div>
@@ -74,4 +80,6 @@ export default function Profile() {
             </div>
         </MainLayout>
     );
-}
+};
+
+export default Profile;

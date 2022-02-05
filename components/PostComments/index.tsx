@@ -1,8 +1,11 @@
 import React from 'react';
 import { Divider, Paper, Tab, Tabs, Typography } from '@material-ui/core';
+
+// COMPONENTS
 import { Comment } from '../Comment';
 import { AddCommentForm } from '../AddCommentForm';
-import data from '../../data';
+// OTHER
+import data from 'data';
 
 export const PostComments: React.FC = () => {
     const [activeTab, setActiveTab] = React.useState(0);
