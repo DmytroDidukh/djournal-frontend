@@ -44,3 +44,20 @@ export type PostDtoType = {
     createdAt: Date;
     updatedAt: Date;
 };
+
+/**
+ * Comment Types
+ * */
+export type CreateCommentDtoType = {
+    text: string;
+    postId: number;
+};
+
+export type CommentDtoType = {
+    id: number;
+    text: string;
+    author: UserDtoType;
+    post: PostDtoType;
+    createdAt: Date;
+    updatedAt: Date;
+};
