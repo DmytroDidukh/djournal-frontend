@@ -3,13 +3,13 @@ import { Button, Paper, Typography } from '@material-ui/core';
 import MessageIcon from '@material-ui/icons/TextsmsOutlined';
 import UserAddIcon from '@material-ui/icons/PersonAddOutlined';
 import { OutputBlockData } from '@editorjs/editorjs';
+import clsx from 'clsx';
 
 // UTILS & SERVICES
 import { UserDtoType } from 'api/types';
 import { PostActions } from 'components/PostActions';
 // STYLES
 import styles from './FullPost.module.scss';
-import clsx from 'clsx';
 
 interface FullPostProps {
     title: string;

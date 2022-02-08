@@ -2,19 +2,18 @@ import React from 'react';
 import { IconButton, Menu, MenuItem, Paper, Typography } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+// UTILS & SERVICES
+import { PostDtoType, UserDtoType } from 'api/types';
+// STYLES
 import styles from './CommentPost.module.scss';
 
 interface CommentPostProps {
-    user: {
-        fullname: string;
-    };
+    author: UserDtoType;
     text: string;
-    post: {
-        title: string;
-    };
+    post: PostDtoType;
 }
 
-export const CommentPost: React.FC<CommentPostProps> = ({ user, post, text }) => {
+export const CommentPost: React.FC<CommentPostProps> = ({ author, post, text }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -25,7 +24,7 @@ export const CommentPost: React.FC<CommentPostProps> = ({ user, post, text }) =>
         setAnchorEl(null);
     };
 
-    console.log(user);
+    console.log(author);
 
     return (
         <Paper elevation={0} className='p-20' classes={{ root: styles.paper }}>

@@ -4,19 +4,24 @@ import { Divider, Paper, Tab, Tabs, Typography } from '@material-ui/core';
 // COMPONENTS
 import { Comment } from '../Comment';
 import { AddCommentForm } from '../AddCommentForm';
-// OTHER
-import data from 'data';
+// UTILS & SERVICES
+import { CommentDtoType } from 'api/types';
 
-export const PostComments: React.FC = () => {
+interface PostCommentsProps {
+    comments: CommentDtoType[];
+}
+
+export const PostComments: React.FC<PostCommentsProps> = ({ comments }) => {
     const [activeTab, setActiveTab] = React.useState(0);
-    const comments = data.comments[activeTab === 0 ? 'popular' : 'new'];
 
     return (
         <Paper elevation={0} className='mt-40 p-30'>
             <div className='container'>
-                <Typography variant='h6' className='mb-20'>
-                    42 comments
-                </Typography>
+                {!!comments.length && (
+                    <Typography variant='h6' className='mb-20'>
+                        {comments.length}
+                    </Typography>
+                )}
                 <Tabs
                     onChange={(_, newValue) => setActiveTab(newValue)}
                     className='mt-20'
@@ -30,12 +35,12 @@ export const PostComments: React.FC = () => {
                 <Divider />
                 <AddCommentForm />
                 <div className='mb-20' />
-                {comments.map((obj) => (
+                {comments.map((comment) => (
                     <Comment
-                        key={obj.id}
-                        user={obj.user}
-                        text={obj.text}
-                        createdAt={obj.createdAt}
+                        key={comment.id}
+                        author={comment.author}
+                        text={comment.text}
+                        createdAt={comment.createdAt}
                     />
                 ))}
             </div>

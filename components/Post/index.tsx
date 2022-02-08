@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 // import Image from 'next/image';
 import { Paper, Typography } from '@material-ui/core';
+import clsx from 'clsx';
 
 // COMPONENTS
 import { PostActions } from '../PostActions';
@@ -19,17 +20,12 @@ export const Post: React.FC<PostProps> = ({ post }) => {
     return (
         <Paper elevation={0} className='p-20' classes={{ root: styles.paper }}>
             <section>
-                <Typography
-                    variant='subtitle1'
-                    color='textSecondary'
-                    display='inline'
-                    className='mr-10'
-                >
+                <Typography variant='subtitle2' color='textSecondary' className='mr-10'>
                     <Link href={`/profile/${post.author.id}`}>
                         <a>{post.author.fullName}</a>
                     </Link>
                 </Typography>
-                <Typography variant='h5' display='inline' className={styles.title}>
+                <Typography variant='h3' className={clsx(styles.title, 'mt-10 mb-10')}>
                     <Link href={`/post/${post.slug}`}>
                         <a>{post.title}</a>
                     </Link>
