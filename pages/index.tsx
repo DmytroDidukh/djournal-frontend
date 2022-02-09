@@ -9,15 +9,13 @@ import { Api } from 'api';
 import { PostDtoType } from 'api/types';
 
 interface HomeProps {
-    posts: PostDtoType[];
+    posts?: PostDtoType[];
 }
 
 const Home: NextPage<HomeProps & AppState> = ({ posts }) => {
-    console.log(posts);
-
     return (
         <MainLayout>
-            {posts.map((post) => (
+            {posts?.map((post) => (
                 <Post key={post.id} post={post} />
             ))}
         </MainLayout>

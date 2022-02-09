@@ -1,9 +1,10 @@
 import React from 'react';
-import { Typography, IconButton, MenuItem, Menu } from '@material-ui/core';
+import { Typography, IconButton, MenuItem, Menu, Avatar } from '@material-ui/core';
 import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
 
 // UTILS & SERVICES
 import { UserDtoType } from 'api/types';
+import { stringAvatar } from 'utils/string-to-color';
 // STYLES
 import styles from './Comment.module.scss';
 
@@ -27,7 +28,7 @@ export const Comment: React.FC<CommentPostProps> = ({ author, text, createdAt })
     return (
         <div className={styles.comment}>
             <div className={styles.userInfo}>
-                {/* <img src={author.avatarUrl} alt='Avatar' />*/}
+                <Avatar {...stringAvatar(author.fullName)} variant='circular' className='mr-10' />
                 <b>{author.fullName}</b>
                 <span>{createdAt}</span>
             </div>

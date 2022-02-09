@@ -26,7 +26,7 @@ export const theme = createTheme({
                 borderRadius: '8px',
                 textTransform: 'inherit',
                 fontSize: 16,
-                transition: 'none',
+                transition: 'background-color .2s ease',
                 '&:active': {
                     boxShadow:
                         // eslint-disable-next-line max-len
@@ -47,9 +47,10 @@ export const theme = createTheme({
                 },
             },
             containedPrimary: {
-                backgroundColor: '#4683d9',
+                color: '#fff',
+                backgroundColor: '#a6dcf9',
                 '&:hover': {
-                    backgroundColor: '#437CCE',
+                    backgroundColor: '#63c5fc',
                 },
             },
         },

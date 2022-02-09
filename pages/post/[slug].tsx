@@ -24,7 +24,7 @@ const PostDetails: NextPage<PostDetailsPageProps> = ({ post, comments }) => {
                 author={post.author}
                 views={post.views}
             />
-            <PostComments comments={comments} />
+            <PostComments postId={post.id} comments={comments} />
         </MainLayout>
     );
 };
