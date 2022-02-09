@@ -16,7 +16,6 @@ interface PostProps {
 }
 
 export const Post: React.FC<PostProps> = ({ post }) => {
-    console.log('POST: ', post);
     return (
         <Paper elevation={0} className='p-20' classes={{ root: styles.paper }}>
             <section>

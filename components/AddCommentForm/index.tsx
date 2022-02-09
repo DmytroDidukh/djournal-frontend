@@ -1,5 +1,6 @@
 import React from 'react';
 import Input from '@material-ui/core/Input';
+import Alert from '@material-ui/lab/Alert';
 import { Button } from '@material-ui/core';
 import { AxiosError } from 'axios';
 
@@ -8,7 +9,6 @@ import { Api } from 'api';
 import { CommentDtoType } from 'api/types';
 // STYLES
 import styles from './AddCommentForm.module.scss';
-import { Alert } from '@material-ui/lab';
 
 interface AddCommentFormProps {
     postId: number;

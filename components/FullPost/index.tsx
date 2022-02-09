@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Paper, Typography } from '@material-ui/core';
+import { Avatar, Button, Paper, Typography } from '@material-ui/core';
 import MessageIcon from '@material-ui/icons/TextsmsOutlined';
 import UserAddIcon from '@material-ui/icons/PersonAddOutlined';
 import { OutputBlockData } from '@editorjs/editorjs';
@@ -8,6 +8,7 @@ import clsx from 'clsx';
 // UTILS & SERVICES
 import { UserDtoType } from 'api/types';
 import { PostActions } from 'components/PostActions';
+import { stringAvatar } from 'utils/string-to-color';
 // STYLES
 import styles from './FullPost.module.scss';
 
@@ -47,10 +48,10 @@ export const FullPost: React.FC<FullPostProps> = ({ title, description, body, au
                     </div>
                     <div className='d-flex justify-between align-center mt-30 mb-30'>
                         <div className={styles.userInfo}>
-                            <img
-                                /* eslint-disable-next-line max-len */
-                                src='https://leonardo.osnova.io/104b03b4-5173-fd9f-2af9-b458dddc4a23/-/scale_crop/108x108/-/format/webp/'
-                                alt='Avatar'
+                            <Avatar
+                                {...stringAvatar(author.fullName)}
+                                variant='circular'
+                                className='mr-10'
                             />
                             <b>{author.fullName}</b>
                             <span>+1685</span>

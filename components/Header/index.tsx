@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext, FC } from 'react';
 import Link from 'next/link';
 import { Paper, Button, IconButton, Avatar } from '@material-ui/core';
 import {
@@ -19,12 +19,12 @@ import { selectUser } from 'store/slices/user';
 // STYLES
 import styles from './Header.module.scss';
 
-export const Header: React.FC = () => {
+export const Header: FC = () => {
     const userData = useAppSelector(selectUser);
-    const { setOpen } = React.useContext(AuthDialogContext);
+    const { setOpen } = useContext(AuthDialogContext);
 
     return (
-        <Paper classes={{ root: styles.root }} elevation={0}>
+        <Paper classes={{ root: styles.root }} elevation={0} square>
             <div className='d-flex align-center'>
                 <IconButton>
                     <MenuIcon />
